@@ -1,6 +1,6 @@
 import soccer_twos
 
-env = soccer_twos.make(render=True)
+env = soccer_twos.make(render=False)
 print("Observation Space: ", env.observation_space.shape)
 print("Action Space: ", env.action_space.shape)
 
@@ -15,7 +15,9 @@ while True:
             3: env.action_space.sample(),
         }
     )
-
+    for player_index,info_ in info.items():
+        print(dict(player_index=player_index, position=info_['player_info']['position'],velocity=info_['player_info']['velocity']))
+        break
     team0_reward += reward[0] + reward[1]
     team1_reward += reward[2] + reward[3]
     if done["__all__"]:
